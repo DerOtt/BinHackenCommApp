@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "23907394526",
+    "firebase_url": "https://binreden-e9534.firebaseio.com",
+    "project_id": "binreden-e9534",
+    "storage_bucket": "binreden-e9534.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:23907394526:android:d58775ef83e55a7c58334f",
+        "android_client_info": {
+          "package_name": "com.example.binreden"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "23907394526-1e5p3cqla55jpb14kvh7olals26dgcoq.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.binreden",
+            "certificate_hash": "4b76c7b90113541da7948269d7aa851f86cf9a5d"
+          }
+        },
+        {
+          "client_id": "23907394526-qgdd0eoi2uk8k35js67i8190r7t139hc.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDJ5YEfmVcyelQdTDnd9_k3xtMw9XsaazA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "23907394526-qgdd0eoi2uk8k35js67i8190r7t139hc.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
