@@ -8,6 +8,7 @@ import android.content.Intent;
 import android.net.Uri;
 import android.nfc.Tag;
 import android.os.Bundle;
+import android.os.StrictMode;
 import android.util.Log;
 import android.webkit.CookieManager;
 import android.webkit.WebResourceError;
@@ -36,6 +37,8 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+        StrictMode.setThreadPolicy(policy);
         getSupportActionBar().hide();
         setContentView(R.layout.activity_main);
         WebView webView  = new WebView(this);
@@ -64,7 +67,7 @@ public class MainActivity extends AppCompatActivity {
                 return true;
             }
         });
-        webView.loadUrl("https://binhacken.app");
+        webView.loadUrl("https://binhacken.app/home");
 
 
         FirebaseInstanceId.getInstance().getInstanceId()
@@ -76,39 +79,28 @@ public class MainActivity extends AppCompatActivity {
                             return;
                         }
                         // Get new Instance ID token
-
+                        WebView wv = (WebView) findViewById((R.id.web_view));
                         String token = task.getResult().getToken();
                         // Log and toast
                         //String msg = getString(token);
                         Log.d("Main Activity, Token", token);
                         Toast.makeText(MainActivity.this, token, Toast.LENGTH_SHORT).show();
-                        if (((WebView) findViewById(R.id.web_view)).getUrl() == "https://binhacken.app/home"){
+                        Log.d("Exists", wv.getUrl());
+                        if (wv.getUrl().contains("home")){
+                            Log.d("URLTEST", "Passed if");
                             String ur = "https://binhacken.app/token?data=" + token;
-                            try {
-                                URL url = new URL(ur);
-                                HttpURLConnection urlc = (HttpURLConnection) url.openConnection();
-                                urlc.setRequestProperty("User-Agent", "Android Application:");
-                                urlc.setRequestProperty("Connection", "close");
-                                urlc.setConnectTimeout(1000 * 30); // mTimeout is in seconds
-                                urlc.connect();
-                                if (urlc.getResponseCode() == 200){
-                                    Toast.makeText(MainActivity.this, "Token successfully sent", Toast.LENGTH_LONG).show();
-                                    Log.d("URLTEST", "TOKEN SENT TO WEBSITE");
-                                }
-                                else{
-                                    Toast.makeText(MainActivity.this, "Token not sent, please restart the app or contact the dev", Toast.LENGTH_LONG).show();
-                                }
-                                urlc.disconnect();
-                            } catch (MalformedURLException e) {
-                                e.printStackTrace();
-                            } catch (IOException e) {
-                                e.printStackTrace();
-                            }
-
-
-
-
+                            wv.loadUrl(ur);
+                            wv.loadUrl("https://binhacken.app/home");
+                            Toast.makeText(MainActivity.this, "Sent request", Toast.LENGTH_LONG).show();
                         }
+                        else{
+                            Toast.makeText(MainActivity.this, "lol you failed, reload app", Toast.LENGTH_SHORT).show();
+                        }
+
+
+
+
+
                     }
                 });
         //Log.d("something", FirebaseInstanceId.getInstance().getInstanceId().getResult().getToken());

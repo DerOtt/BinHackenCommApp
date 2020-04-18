@@ -11,16 +11,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+
+
         <service
             android:name=".FBMS"
-            android:enabled="true"
-            android:exported="true"></service>
-        <service
-            android:name=".FireBaseMessagingService"
-            android:enabled="true"
-            android:exported="true" />
-        <service
-            android:name=".MyFirebaseMessagingService"
             android:enabled="true"
             android:exported="false">
             <intent-filter>
